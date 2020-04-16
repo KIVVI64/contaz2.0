@@ -1,9 +1,16 @@
 import Vue from "vue";
 import App from "./App.vue";
 import firebase from "firebase";
+import VueAnalytics from "vue-analytics";
 import "./registerServiceWorker";
 import router from "./router";
 import vuetify from "./plugins/vuetify";
+
+// Configuration VueAnalytics
+Vue.use(VueAnalytics, {
+  id: "UA-76102762-9",
+  router
+});
 
 Vue.config.productionTip = false;
 
