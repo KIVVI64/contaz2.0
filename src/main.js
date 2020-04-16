@@ -6,12 +6,6 @@ import "./registerServiceWorker";
 import router from "./router";
 import vuetify from "./plugins/vuetify";
 
-// Configuration VueAnalytics
-Vue.use(VueAnalytics, {
-  id: "UA-76102762-9",
-  router
-});
-
 Vue.config.productionTip = false;
 
 const firebaseConfig = {
@@ -24,8 +18,13 @@ const firebaseConfig = {
   appId: "1:539165494457:web:3591cd06378471fe26df68",
   measurementId: "G-RMH1D4G5YW"
 };
-
 firebase.initializeApp(firebaseConfig);
+
+// Configuration VueAnalytics
+Vue.use(VueAnalytics, {
+  id: "UA-76102762-9",
+  router
+});
 
 new Vue({
   router,
