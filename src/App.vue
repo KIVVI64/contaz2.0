@@ -16,16 +16,18 @@
 
       <v-divider></v-divider>
 
-      <v-list dense>
-        <v-list-item v-for="item in items" :key="item.title">
-          <v-list-item-icon>
-            <v-icon>{{ item.icon }}</v-icon>
-          </v-list-item-icon>
+      <v-list flat>
+        <v-list-item-group v-model="item" color="primary">
+          <v-list-item v-for="item in items" :to="item.url" :key="item.title">
+            <v-list-item-icon>
+              <v-icon>{{ item.icon }}</v-icon>
+            </v-list-item-icon>
 
-          <v-list-item-content>
-            <v-list-item-title>{{ item.title }}</v-list-item-title>
-          </v-list-item-content>
-        </v-list-item>
+            <v-list-item-content>
+              <v-list-item-title>{{ item.title }}</v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+        </v-list-item-group>
       </v-list>
     </v-navigation-drawer>
 
@@ -50,11 +52,21 @@ export default {
   name: "App",
   data: () => ({
     drawer: false,
+    item: 1,
     items: [
-      { title: "My Account", icon: "mdi-account-circle-outline" },
-      { title: "Search", icon: "mdi-magnify" },
-      { title: "Users", icon: "mdi-bell-outline" }
-    ],
+      {
+        title: "My Account",
+        icon: "mdi-account-circle-outline",
+        url: "/account"
+      },
+      { title: "Search", icon: "mdi-magnify", url: "/search" },
+      {
+        title: "Notifications",
+        icon: "mdi-bell-outline",
+        url: "/notifications"
+      },
+      { title: "Login / Register", icon: "mdi-account", url: "/sign-in" }
+    ]
   })
 };
 </script>
