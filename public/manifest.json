@@ -1,6 +1,6 @@
 {
-  "name":"CONTAZ",
-  "short_name":"CONTAZ",
+  "name":"Contaz",
+  "short_name":"Contaz",
   "theme_color":"#8bc34a",
   "icons":[
     {
@@ -25,7 +25,7 @@
       "type":"image/png",
       "purpose":"maskable"}
   ],
-  "start_url":"/account",
+  "start_url":"/account/?source=pwa",
   "display":"standalone",
   "background_color":"#FFFFFF"
 }

@@ -4,7 +4,7 @@
       <v-card class="pa-2" flat>
         <v-avatar size="128" color="primary" style="border-radius: 50%">
           <img v-if="prof" :src="prof" :alt="name.slice(0, 2).toUpperCase()" />
-          <span v-else class="white--text avatar-text">
+          <span v-else class="grey--text text--lighten-4 avatar-text">
             {{ name.slice(0, 2).toUpperCase() + "." }}
           </span>
         </v-avatar>

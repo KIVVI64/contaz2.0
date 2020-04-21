@@ -14,19 +14,26 @@ const routes = [
   {
     path: "/",
     name: "Home",
-    component: Home
+    component: Home,
+    meta: {
+      title: "Contaz - Home"
+    }
   },
   {
     path: "/sign-in",
     name: "SignIn",
-    component: SignIn
+    component: SignIn,
+    meta: {
+      title: "Contaz - SignIn"
+    }
   },
   {
     path: "/account",
     name: "Account",
     component: Account,
     meta: {
-      requiresAuth: true
+      requiresAuth: true,
+      title: "Contaz - Account"
     }
   },
   {
@@ -34,7 +41,8 @@ const routes = [
     name: "AddSocial",
     component: SocialAdd,
     meta: {
-      requiresAuth: true
+      requiresAuth: true,
+      title: "Contaz - Add Social"
     }
   },
   {
@@ -42,13 +50,18 @@ const routes = [
     name: "EditSocial",
     component: SocialEdit,
     meta: {
-      requiresAuth: true
+      requiresAuth: true,
+      title: "Contaz - Edit Social"
     }
   },
   {
     path: "*",
     name: "ViewNotFound",
-    component: ViewNotFound
+    component: ViewNotFound,
+    meta: {
+      requiresAuth: true,
+      title: "Contaz - 404"
+    }
   }
 ];
 
@@ -60,6 +73,8 @@ const router = new VueRouter({
 
 // Nav Guards
 router.beforeEach((to, from, next) => {
+  // Set page title
+  document.title = to.meta.title || "Contaz";
   // Check for requiresAuth guard
   if (to.matched.some(record => record.meta.requiresAuth)) {
     // Check if NOT logged in
