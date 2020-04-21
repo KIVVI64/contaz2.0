@@ -31,19 +31,36 @@
       </v-list>
     </v-navigation-drawer>
 
-    <v-app-bar app color="primary">
+    <v-app-bar
+      app
+      absolute
+      color="white"
+      elevate-on-scroll
+      scroll-target="#scrolling"
+    >
       <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
-      <v-toolbar-title>CONTAZ</v-toolbar-title>
+      <v-toolbar-title>{{ $route.name }}</v-toolbar-title>
+      <v-spacer></v-spacer>
+      <v-btn icon>
+        <v-icon>mdi-cog</v-icon>
+      </v-btn>
     </v-app-bar>
-
-    <!-- Sizes your content based upon application components -->
-    <v-content>
-      <!-- Provides the application the proper gutter -->
-      <v-container fluid>
-        <!-- If using vue-router -->
-        <router-view></router-view>
-      </v-container>
-    </v-content>
+    <v-sheet id="scrolling" class="overflow-y-auto" max-height="99vh">
+      <!-- Sizes your content based upon application components -->
+      <v-content>
+        <!-- Provides the application the proper gutter -->
+        <v-container>
+          <!-- If using vue-router -->
+          <router-view></router-view>
+        </v-container>
+      </v-content>
+    </v-sheet>
+    <v-bottom-navigation color="primary" absolute shift light>
+      <v-btn v-for="item in items" :to="item.url" :key="item.title">
+        <span>{{ item.title }}</span>
+        <v-icon>{{ item.icon }}</v-icon>
+      </v-btn>
+    </v-bottom-navigation>
   </v-app>
 </template>
 
@@ -70,3 +87,15 @@ export default {
   })
 };
 </script>
+
+<style>
+main {
+  padding-bottom: 52px !important;
+}
+.v-bottom-navigation {
+  bottom: 1px !important;
+}
+a {
+  text-decoration: none;
+}
+</style>

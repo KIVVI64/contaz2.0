@@ -5,11 +5,22 @@
       <v-tab>Login</v-tab>
     </v-tabs>
 
+    <v-alert
+      class="fixed"
+      v-model="alert"
+      close-text="Close"
+      color="error"
+      dark
+      dismissible
+    >
+      {{ err }}
+    </v-alert>
+
     <v-tabs-items v-model="tabs">
       <v-tab-item>
         <v-card flat>
           <v-card-text>
-            <form @submit.prevent="register">
+            <v-form @submit.prevent="register">
               <v-text-field
                 v-model="r_name"
                 label="Name"
@@ -33,13 +44,6 @@
                 required
               ></v-text-field>
 
-              <v-snackbar v-model="snackbar">
-                {{ l_err }}
-                <v-btn color="error" text @click="snackbar = false">
-                  Close
-                </v-btn>
-              </v-snackbar>
-
               <v-btn
                 block
                 outlined
@@ -47,16 +51,16 @@
                 color="primary"
                 dark
                 @click.prevent="register"
-                >Register</v-btn
-              >
-            </form>
+                >Register
+              </v-btn>
+            </v-form>
           </v-card-text>
         </v-card>
       </v-tab-item>
       <v-tab-item>
         <v-card flat>
           <v-card-text>
-            <form @submit.prevent="login">
+            <v-form @submit.prevent="login">
               <v-text-field
                 v-model="l_email"
                 label="E-mail"
@@ -72,13 +76,6 @@
                 required
               ></v-text-field>
 
-              <v-snackbar v-model="snackbar">
-                {{ l_err }}
-                <v-btn color="error" text @click="snackbar = false">
-                  Close
-                </v-btn>
-              </v-snackbar>
-
               <v-btn
                 block
                 outlined
@@ -86,9 +83,9 @@
                 color="primary"
                 dark
                 @click.prevent="login"
-                >Login</v-btn
-              >
-            </form>
+                >Login
+              </v-btn>
+            </v-form>
           </v-card-text>
         </v-card>
       </v-tab-item>
@@ -104,14 +101,13 @@ export default {
   data() {
     return {
       tabs: null,
-      snackbar: false,
+      alert: false,
       l_email: null,
       l_password: null,
-      l_err: null,
       r_name: null,
       r_email: null,
       r_password: null,
-      r_err: null
+      err: null
     };
   },
   methods: {
@@ -129,8 +125,8 @@ export default {
             }
           },
           err => {
-            this.l_err = err.message;
-            this.snackbar = true;
+            this.err = err.message;
+            this.alert = true;
           }
         );
     },
@@ -150,18 +146,29 @@ export default {
                 });
             },
             err => {
-              this.l_err = err.message;
-              this.snackbar = true;
+              this.err = err.message;
+              this.alert = true;
             }
           )
           .then(() => {
             this.$router.push("/account");
           });
       } else {
-        this.l_err = "Provide us with your name";
-        this.snackbar = true;
+        this.err = "Provide us with your name";
+        this.alert = true;
       }
     }
   }
 };
 </script>
+
+<style scoped>
+.fixed {
+  position: fixed !important;
+  bottom: 0px;
+  left: 0px;
+  width: 90%;
+  margin-left: 5%;
+  z-index: 2000;
+}
+</style>

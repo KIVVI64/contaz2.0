@@ -4,6 +4,8 @@ import firebase from "firebase";
 import Home from "../views/Home.vue";
 import SignIn from "../views/SignIn.vue";
 import Account from "../views/Account.vue";
+import SocialAdd from "../views/SocialAdd.vue";
+import SocialEdit from "../views/SocialEdit.vue";
 import ViewNotFound from "../views/ViewNotFound.vue";
 
 Vue.use(VueRouter);
@@ -23,6 +25,22 @@ const routes = [
     path: "/account",
     name: "Account",
     component: Account,
+    meta: {
+      requiresAuth: true
+    }
+  },
+  {
+    path: "/add/:social_uid",
+    name: "AddSocial",
+    component: SocialAdd,
+    meta: {
+      requiresAuth: true
+    }
+  },
+  {
+    path: "/edit/:account_uid",
+    name: "EditSocial",
+    component: SocialEdit,
     meta: {
       requiresAuth: true
     }
