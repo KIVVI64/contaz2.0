@@ -74,7 +74,7 @@ const router = new VueRouter({
 // Nav Guards
 router.beforeEach((to, from, next) => {
   // Set page title
-  // document.title = to.meta.title || "Contaz";
+  document.title = to.meta.title || "Contaz";
   // Check for requiresAuth guard
   if (to.matched.some(record => record.meta.requiresAuth)) {
     // Check if NOT logged in

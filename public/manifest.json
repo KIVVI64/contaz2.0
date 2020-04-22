@@ -25,7 +25,8 @@
       "type":"image/png",
       "purpose":"maskable"}
   ],
-  "start_url":"/account/?source=pwa",
+  "start_url":"/account",
+  "scope": "/",
   "display":"standalone",
   "background_color":"#FFFFFF"
 }
