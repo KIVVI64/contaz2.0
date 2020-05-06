@@ -3,6 +3,7 @@ import VueRouter from "vue-router";
 import firebase from "firebase";
 import Home from "../views/Home.vue";
 import SignIn from "../views/SignIn.vue";
+import Search from "../views/Search.vue";
 import Account from "../views/Account.vue";
 import SocialAdd from "../views/SocialAdd.vue";
 import SocialEdit from "../views/SocialEdit.vue";
@@ -25,6 +26,15 @@ const routes = [
     component: SignIn,
     meta: {
       title: "Contaz - SignIn"
+    }
+  },
+  {
+    path: "/search",
+    name: "Search",
+    component: Search,
+    meta: {
+      requiresAuth: true,
+      title: "Contaz - Search"
     }
   },
   {
